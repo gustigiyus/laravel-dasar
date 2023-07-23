@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EncryptCookieController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
@@ -112,3 +113,8 @@ Route::get('/response/type/view', [ResponseController::class, 'responseView']);
 Route::get('/response/type/json', [ResponseController::class, 'responseJson']);
 Route::get('/response/type/file', [ResponseController::class, 'responseFile']);
 Route::get('/response/type/download', [ResponseController::class, 'responseDownload']);
+
+//? COOKIE
+Route::get('/cookie/set', [EncryptCookieController::class, 'createCookie']);
+Route::get('/cookie/get', [EncryptCookieController::class, 'getCookie']);
+Route::get('/cookie/clear', [EncryptCookieController::class, 'clearCookie']);
