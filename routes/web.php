@@ -71,8 +71,12 @@ Route::get('/category/{id}', function($categoryId){
     return "Category $categoryId";
 })->where('id', '[0-9]+');
 
-
 //? WITH OPTIONAL
 Route::get('/user/{id?}', function($id = '404'){
     return "User $id";
 });
+
+//? WITH NAME
+Route::get('/barang/{id?}', function($id = '404'){
+    return "User $id";
+})->name('barang.detail');
