@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/route_test', function() {
+    return 'Hello Gusti Giustianto';
+});
+
+Route::redirect('/youtube', '/route_test');
+
+Route::fallback(function (){
+    return "404 by Gusti Giustainto";
+});
