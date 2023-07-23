@@ -109,18 +109,23 @@ Route::post('/file/upload', [FileController::class, 'upload']);
 Route::get('/response/hello', [ResponseController::class, 'response']);
 Route::get('/response/header', [ResponseController::class, 'header']);
 
-Route::get('/response/type/view', [ResponseController::class, 'responseView']);
-Route::get('/response/type/json', [ResponseController::class, 'responseJson']);
-Route::get('/response/type/file', [ResponseController::class, 'responseFile']);
-Route::get('/response/type/download', [ResponseController::class, 'responseDownload']);
+//? GROUP ROUTE DAN RESPONSE LAINNYA
+Route::prefix('/response/type')->group(function(){
+    Route::get('/view', [ResponseController::class, 'responseView']);
+    Route::get('/json', [ResponseController::class, 'responseJson']);
+    Route::get('/file', [ResponseController::class, 'responseFile']);
+    Route::get('/download', [ResponseController::class, 'responseDownload']);
+});
 
-//? COOKIE
-Route::get('/cookie/set', [EncryptCookieController::class, 'createCookie']);
-Route::get('/cookie/get', [EncryptCookieController::class, 'getCookie']);
-Route::get('/cookie/clear', [EncryptCookieController::class, 'clearCookie']);
-
+//? GROUP CONTROLLER DAN COOKIE  
+Route::controller(EncryptCookieController::class)->group(function(){
+    Route::get('/cookie/set', 'createCookie');
+    Route::get('/cookie/get', 'getCookie');
+    Route::get('/cookie/clear', 'clearCookie');
+});
 
 //? MIDDLEWARE
+//* SINGLE
 Route::get('/middleware/api', function(){
     return "Ok";
 })->middleware(['contoh']);
@@ -129,3 +134,14 @@ Route::get('/middleware/api', function(){
 Route::get('/middleware/group', function(){
     return "GROUP";
 })->middleware(['pzn']);
+
+//* GROUPING
+// ! Route::middleware(['contoh'])->prefix('/middleware')->group(function(){
+// !    Route::get('/api', function(){
+// !         return "Ok";
+// !     });
+// !     Route::get('/group', function(){
+// !         return "GROUP";
+// !     });
+// ! });
+
