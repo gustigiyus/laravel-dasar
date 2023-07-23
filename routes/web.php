@@ -5,6 +5,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -145,3 +146,6 @@ Route::get('/middleware/group', function(){
 // !     });
 // ! });
 
+//? SESSION
+Route::get('/session/create', [SessionController::class, 'craeteSession']);
+Route::get('/session/get', [SessionController::class, 'getSession']);
