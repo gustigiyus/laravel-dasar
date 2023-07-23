@@ -25,6 +25,7 @@ Route::get('/route_test', function() {
 
 Route::redirect('/youtube', '/route_test');
 
+// 404 DEFUALT ROUTE (NOTFOUND)
 Route::fallback(function (){
     return "404 by Gusti Giustainto";
 });
@@ -54,4 +55,24 @@ Route::get('/hello-world', function(){
         'name' => 'Gusti Giustianto',
         'title' => 'Route View Nested'
     ]);
+});
+
+//? WITH PARAMETER BASIC
+Route::get('/products/{id}', function($productId){
+    return "Product $productId";
+});
+
+Route::get('/products/{productId}/items/{itemId}', function($productId, $itemId){
+    return "Product $productId, Item $itemId";
+});
+
+//? WITH WHERE (REGEX)
+Route::get('/category/{id}', function($categoryId){
+    return "Category $categoryId";
+})->where('id', '[0-9]+');
+
+
+//? WITH OPTIONAL
+Route::get('/user/{id?}', function($id = '404'){
+    return "User $id";
 });
