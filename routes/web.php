@@ -118,3 +118,14 @@ Route::get('/response/type/download', [ResponseController::class, 'responseDownl
 Route::get('/cookie/set', [EncryptCookieController::class, 'createCookie']);
 Route::get('/cookie/get', [EncryptCookieController::class, 'getCookie']);
 Route::get('/cookie/clear', [EncryptCookieController::class, 'clearCookie']);
+
+
+//? MIDDLEWARE
+Route::get('/middleware/api', function(){
+    return "Ok";
+})->middleware(['contoh']);
+
+
+Route::get('/middleware/group', function(){
+    return "GROUP";
+})->middleware(['pzn']);
