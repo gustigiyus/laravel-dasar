@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HelloController;
+use App\Http\Controllers\InputController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,14 +35,16 @@ Route::fallback(function (){
 
 // ================  ROUTE(VIEW) =================
 
-//! CARA LANGSUNG
+
+//!--------------  CARA LANGSUNG  ---------------------!//
 Route::view('/hello', 'hello', [
     'name' => 'Gusti Giustianto',
     'title' => 'Route View'
 ]);
 
 
-//!  CARA FUNCTION 
+//!--------------  CARA FUNCTION  ---------------------!//
+
 //? SINGULAR VIEW
 Route::get('/hello-again', function(){
     return view('hello', [
@@ -80,3 +84,17 @@ Route::get('/user/{id?}', function($id = '404'){
 Route::get('/barang/{id?}', function($id = '404'){
     return "User $id";
 })->name('barang.detail');
+
+
+//!--------------  CARA BEST PARTICE  ---------------------!//
+
+Route::get('/controller/hello/requestData', [HelloController::class, 'requestData']);
+Route::get('/controller/hello/{name}', [HelloController::class, 'hello']);
+
+
+//? TEST INPUT POST NESTED 
+Route::post('/input/hello/first', [InputController::class, 'helloFirstName']);
+//? TEST INPUT POST ARRAY 
+Route::post('/input/hello/array', [InputController::class, 'helloArray']);
+//? TEST INPUT POST TYPE 
+Route::post('/input/type', [InputController::class, 'inputType']);
