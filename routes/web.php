@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\InputController;
 use Illuminate\Support\Facades\Route;
@@ -98,3 +99,6 @@ Route::post('/input/hello/first', [InputController::class, 'helloFirstName']);
 Route::post('/input/hello/array', [InputController::class, 'helloArray']);
 //? TEST INPUT POST TYPE 
 Route::post('/input/type', [InputController::class, 'inputType']);
+
+//? FILE UPLOAD
+Route::post('/file/upload', [FileController::class, 'upload']);
